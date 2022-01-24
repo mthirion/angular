@@ -1,0 +1,11 @@
+{
+    "/lg/*": {
+      "target": "http://amqbrokera.mycompany.com:8161/console/auth/login",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "pathRewrite": {
+        "^/lg": ""
+      }
+    }
+}

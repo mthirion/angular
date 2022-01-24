@@ -1,0 +1,131 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<style>
+  :host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+
+
+  table, th, tr {
+	border-collapse: collapse;
+  	align: center;
+	text-align:center;
+  	border: solid black;
+  	border-width: 1px 0;
+   }
+   .inputmsg
+   {
+    width: 100%; 
+    height: 100%;
+   }
+   .inputadr
+   {
+    width: 80%; 
+    height: 100%;
+   }
+
+   .col {
+	padding: 20px;
+   }
+   .msg {
+	padding:0px;
+	height: 50px;
+   }
+   .prop {
+	height: 30px;
+   }
+
+   .tableful {
+	width: 100%;
+   }
+</style>
+
+
+<div>
+<div class="container">
+  <div *ngIf = "queues == true">
+	<table style="margin: 0px;width: 40%; margin-left:30%; margin-right:30%;"> <!-- border=1 frame=hsides rules=rows>-->
+    	<thead>
+        	<tr>
+          	<th>Queue names</th>
+          	<th>Number of messages</th>
+        	</tr>
+    	</thead>
+    	<tbody>
+		<tr *ngFor="let queuename of queuelist; index as i" (click)="getMessages(queuename)"> <!--data-ng-click="getMessage(queuename)" -->
+            		<td class="col">{{queuename}}</td>
+            		<td class="col">{{msgcountlist[i]}}</td>
+        	</tr>
+    	</tbody>
+  	</table>
+  </div>
+  <div *ngIf = "messages == true">
+        <table class="tablefull"> <!-- border=1 frame=hsides rules=rows>-->
+        <thead>
+                <tr>
+		<th class="prop">(un)select
+			<input type="checkbox" [(ngModel)]="isSelectAll" (click)="checkUncheckAll()"/>
+		</th>
+                <th width="10%">messages ID</th>
+                <th width="20%">Exception message</th>
+                <th width="30%">messages Content</th>
+                <th width=10%>Destination</th>
+		<th>Action</th>
+                </tr>
+        </thead>
+        <tbody>
+                <tr *ngFor="let message of messagelist; index as i" >
+			<td class="prop"><input type="checkbox" [(ngModel)]="msgIsSelected[i]" checked="msgIsSelected[i]"></td>
+			<td class="prop" width="10%">{{message.messageID}}</td>
+			<td class="prop" width="20%">{{message.StringProperties.application_exception}}</td>
+			<td class="msg" width="30%">
+				 <span ng-show="msgediting">
+				 <input class="inputmsg" type="text" [(ngModel)]="messagelist[i].text" value="{{message.text}}">
+				 </span>
+			</td>
+			<td class="prop">
+				<input class="inputadr" type="text" [(ngModel)]="messagelist[i].address" value="{{message.address}}">
+			</td>
+			<td class="prop">
+				 <button (click)="sendMessage(i)">Replay</button>
+			</td>
+                </tr>
+		<tr> 
+			<td></td> <td></td> <td></td> <td></td> <td></td> 
+			<td> <button (click)="sendAllMessage()">Replay selected</button> </td>
+
+        </tbody>
+        </table>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
