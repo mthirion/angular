@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "./node_modules/angular-cli/bin/ng serve --host 0.0.0.0 --disable-host-check",
+    "start": "pwd && ls && ./node_modules/angular-cli/bin/ng serve --host 0.0.0.0 --disable-host-check",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
