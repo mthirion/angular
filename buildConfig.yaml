@@ -1,0 +1,19 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "aprr-poc-angular-bc" 
+spec:
+  runPolicy: "Serial" 
+  source: 
+    git:
+      uri: "https://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@github.com/mthirion/angular.git"
+      ref: "main"
+  strategy: 
+    sourceStrategy:
+      from:
+        kind: "ImageStreamTag"
+        name: "nodejs:14-ubi7"
+  output: 
+    to:
+      kind: "ImageStreamTag"
+      name: "aprr-poc-angular:latest"
